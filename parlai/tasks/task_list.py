@@ -627,6 +627,15 @@ task_list = [
         ),
     },
     {
+        "id": "rasa_eval",
+        "display_name": "rasa_eval",
+        "task": "rasa_eval",
+        "tags": ["ChitChat"],
+        "description": (
+            "Testing rasa_eval"
+        ),
+    },
+    {
         "id": "Twitter",
         "display_name": "Twitter",
         "task": "twitter",
