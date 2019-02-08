@@ -34,7 +34,7 @@ and on the left side of the chat page. Supports HTML formatting.
 """
 task_config['task_description'] = """
 In this task, you will be shown two conversation pairs,
-and will rank each on its coherency, on a scale of 1-5.<br><br>
+and will rate each on its coherency, on a scale of 1-5.<br><br>
 Example:<br><br>
 ------------------- Task Begin ------------------- <br><br>
 <b>Rating Collector</b>:<br>
@@ -44,11 +44,11 @@ P2: i believe so , the buddha has taught me well .<br><br>
 Conversation Pair 2:<br>
 P3: that is so good . i'm true good things will come your way<br>
 P4: i believe so , the buddha has taught me well .<br><br>
-Please provide a ranking for Conversation Pair 1.<br><br>
+Please provide a coherency rating for Conversation Pair 1.<br><br>
 <b>Worker</b>:<br>
 1<br><br>
 <b>Rating Collector</b>:<br>
-Thanks! Now please provide a ranking for Conversation Pair 2.
+Thanks! Now please provide a coherency rating for Conversation Pair 2.
 <br><br>
 <b>Worker</b>:<br>
 4<br><br>

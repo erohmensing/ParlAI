@@ -54,7 +54,7 @@ class QADataCollectionWorld(MTurkTaskWorld):
 
             # Wrap the context with a prompt telling the turker what to do next
             ad['text'] = (self.context +
-                          '\n\nPlease provide a ranking ' +
+                          '\n\nPlease provide a coherency rating ' +
                           'for Conversation Pair 1.')
 
             self.mturk_agent.observe(validate(ad))
@@ -67,7 +67,7 @@ class QADataCollectionWorld(MTurkTaskWorld):
             # provide a rating for the second pair
 
             # A prompt telling the turker what to do next
-            ad['text'] = ('Thanks! Now please provide a ranking ' +
+            ad['text'] = ('Thanks! Now please provide a coherency rating ' +
                           'for Conversation Pair 2.')
             ad['episode_done'] = True  # end of episode
 
