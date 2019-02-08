@@ -50,10 +50,7 @@ class QADataCollectionWorld(MTurkTaskWorld):
 
             # Get context from rasa teacher agent
             qa = self.task.act()
-            self.context = qa['text']
-            # print("QA test: \n{}".format(qa['text']))
-            # self.context = '\n'.join(qa['text'].split('\n'))
-            print("Context: \n{}".format(self.context))
+            self.context = '\n'.join(qa['text'].split('_'))
 
             # Wrap the context with a prompt telling the turker what to do next
             ad['text'] = (self.context +
@@ -70,7 +67,7 @@ class QADataCollectionWorld(MTurkTaskWorld):
             # provide a rating for the second pair
 
             # A prompt telling the turker what to do next
-            ad['text'] = ('Thanks! \n, \n\n, \r\n Now please provide a ranking ' +
+            ad['text'] = ('Thanks! Now please provide a ranking ' +
                           'for Conversation Pair 2.')
             ad['episode_done'] = True  # end of episode
 

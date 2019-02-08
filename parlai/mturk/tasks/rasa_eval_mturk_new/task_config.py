@@ -10,15 +10,15 @@ task_config = {}
 task_config['frontend_version'] = 1
 
 """A short and descriptive title about the kind of task the HIT contains.
-On the Amazon Mechanical Turk web site, the HIT title appears in search results,
-and everywhere the HIT is mentioned.
+On the Amazon Mechanical Turk web site, the HIT title appears in search
+results, and everywhere the HIT is mentioned.
 """
 task_config['hit_title'] = 'Rank coherency of conversation pairs'
 
 
-"""A description includes detailed information about the kind of task the HIT contains.
-On the Amazon Mechanical Turk web site, the HIT description appears in the expanded
-view of search results, and in the HIT and assignment screens.
+"""A description includes detailed information about the kind of task the HIT
+contains. On the Amazon Mechanical Turk web site, the HIT description appears
+in the expanded view of search results, and in the HIT and assignment screens.
 """
 task_config['hit_description'] = 'Rank coherency of conversation pairs.'
 
@@ -33,25 +33,26 @@ task_config['hit_keywords'] = 'chat,question,answer'
 and on the left side of the chat page. Supports HTML formatting.
 """
 task_config['task_description'] = """
-In this task, you will be shown two conversation pairs, and will rank each on a scale of 1-5.<br><br>
+In this task, you will be shown two conversation pairs,
+and will rank each on its coherency, on a scale of 1-5.<br><br>
 Example:<br><br>
 ------------------- Task Begin ------------------- <br><br>
-<b>QA Collector</b>:<br>
-<b>Conversation Pair 1</b>:<br>
-P1: Example.<br>
-P2: Example.<br><br>
-<b>Conversation Pair 2</b>:<br>
-P1: Example.<br>
-P2: Example.<br><br>
-Please provide a ranking for <b>Conversation Pair 1</b>.<br><br>
+<b>Rating Collector</b>:<br>
+Conversation Pair 1:<br>
+P1: i have always wanted to try real persian food .<br>
+P2: i believe so , the buddha has taught me well .<br><br>
+Conversation Pair 2:<br>
+P3: that is so good . i'm true good things will come your way<br>
+P4: i believe so , the buddha has taught me well .<br><br>
+Please provide a ranking for Conversation Pair 1.<br><br>
 <b>Worker</b>:<br>
-2<br><br>
-<b>QA Collector</b>:<br>
-Thanks! Now please provide a ranking for <b>Conversation Pair 2</b>.
+1<br><br>
+<b>Rating Collector</b>:<br>
+Thanks! Now please provide a ranking for Conversation Pair 2.
 <br><br>
 <b>Worker</b>:<br>
 4<br><br>
-<b>QA Collector</b>:<br>
+<b>Rating Collector</b>:<br>
 Thanks!<br><br>
 ------------------- Task Done ------------------- <br><br>
 If you are ready, please click "Accept HIT" to start this task.
