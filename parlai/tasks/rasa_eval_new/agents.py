@@ -10,6 +10,7 @@ from .build import build
 import copy
 import json
 import os
+import random
 
 
 def get_sentence_tokenizer():
@@ -51,19 +52,26 @@ class DefaultTeacher(DialogTeacher):
             self.rasa = json.load(data_file)['data']
 
         for example in self.rasa:
-            # pc_question = example['intent']
             pc_question = " ".join(example['intent'].split("_"))
             rasa_question = " ".join(example['intent_prediction']['name'].split("_"))
             answer = example['text']
-            answers = ("one", "two")
-            # secret = (0, 1)
-            prompt = ('Conversation Pair 1: ' + '\n' +
-                      'P1: ' + rasa_question + '\n' + 'P2: ' + answer + '\n\n' +
-                      'Conversation Pair 2: ' + '\n' +
-                      'P1: ' + pc_question + '\n' + 'P2: ' + answer)
-            # context = example['intent']
-            # yield(prompt, secret), True
-            yield (prompt, answers), True
+
+            q1 = rasa_question
+            q2 = pc_question
+            pc_label = ("0", "1")
+
+            # randomly swap the question order
+            if (random.uniform(0, 1) > 0.5):
+                q1 = pc_question
+                q2 = rasa_question
+                pc_label = ("1", "0")
+
+            prompt = ('Conversation Pair 1:' + '_' +
+                      'P1: ' + q1 + '_' + 'P2: ' + answer + '__' +
+                      'Conversation Pair 2:' + '_' +
+                      'P3: ' + q2 + '_' + 'P4: ' + answer)
+
+            yield (prompt, pc_label), True
 
 
 class FulldocTeacher(ParlAIDialogTeacher):
