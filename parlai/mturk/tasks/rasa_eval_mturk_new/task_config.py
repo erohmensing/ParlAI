@@ -7,13 +7,13 @@
 task_config = {}
 
 
-task_config['frontend_version'] = 1
+# task_config['frontend_version'] = 1
 
 """A short and descriptive title about the kind of task the HIT contains.
 On the Amazon Mechanical Turk web site, the HIT title appears in search
 results, and everywhere the HIT is mentioned.
 """
-task_config['hit_title'] = 'Rank coherency of conversation pairs'
+task_config['hit_title'] = 'Rate how well the prompt and response go together'
 
 
 """A description includes detailed information about the kind of task the HIT
@@ -33,25 +33,33 @@ task_config['hit_keywords'] = 'chat,question,answer'
 and on the left side of the chat page. Supports HTML formatting.
 """
 task_config['task_description'] = """
+<header>
+<h2>Instructions:</h2>
+</header>
 In this task, you will be shown two conversation pairs,
-and will rate each on its coherency, on a scale of 1-5.<br><br>
-Example:<br><br>
+and will rate each pair on how well the response fits the prompt,
+on a scale from 1 to 10
+(1 - makes no sense, 10 - logically follows).<br><br>
+<header>
+<h2>Example:</h2>
+</header>
 ------------------- Task Begin ------------------- <br><br>
 <b>Rating Collector</b>:<br>
 Conversation Pair 1:<br>
-P1: i have always wanted to try real persian food .<br>
-P2: i believe so , the buddha has taught me well .<br><br>
-Conversation Pair 2:<br>
-P3: that is so good . i'm true good things will come your way<br>
-P4: i believe so , the buddha has taught me well .<br><br>
-Please provide a coherency rating for Conversation Pair 1.<br><br>
+P1:  hello , how are you this evening<br>
+R1:  i'm good . hope you are having a great evening<br><br>
+Please provide a rating for Conversation Pair 1.<br><br>
 <b>Worker</b>:<br>
-1<br><br>
+10<br><br>
 <b>Rating Collector</b>:<br>
-Thanks! Now please provide a coherency rating for Conversation Pair 2.
+Thanks! <br><br>
+Conversation Pair 2:<br>
+P1:  getting ready for school tomorrow .<br>
+R2:  i'm good . hope you are having a great evening .<br><br>
+Now, please provide a rating for Conversation Pair 2.
 <br><br>
 <b>Worker</b>:<br>
-4<br><br>
+2<br><br>
 <b>Rating Collector</b>:<br>
 Thanks!<br><br>
 ------------------- Task Done ------------------- <br><br>

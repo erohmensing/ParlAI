@@ -67,9 +67,9 @@ class DefaultTeacher(DialogTeacher):
                 pc_label = ("1", "0")
 
             prompt = ('Conversation Pair 1:' + '_' +
-                      'P1: ' + q1 + '_' + 'P2: ' + answer + '__' +
+                      'P1:  ' + q1 + '_' + 'R1:  ' + answer + '~' +
                       'Conversation Pair 2:' + '_' +
-                      'P3: ' + q2 + '_' + 'P4: ' + answer)
+                      'P2:  ' + q2 + '_' + 'R2:  ' + answer)
 
             yield (prompt, pc_label), True
 
