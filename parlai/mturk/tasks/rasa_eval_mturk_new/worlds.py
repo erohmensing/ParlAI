@@ -35,8 +35,8 @@ class QADataCollectionWorld(MTurkTaskWorld):
         self.episodeDone = False
         self.turn_index = -1
         self.context = None
-        self.question = None
-        self.answer = None
+        self.rating_1 = None
+        self.rating_2 = None
 
     def parley(self):
         # Each turn starts from the QA Collector agent
@@ -50,16 +50,20 @@ class QADataCollectionWorld(MTurkTaskWorld):
 
             # Get context from rasa teacher agent
             qa = self.task.act()
-            self.context = '\n'.join(qa['text'].split('_'))
+            self.pairs = (qa['text'].split('~'))
+            self.pair_1 = '\n'.join(self.pairs[0].split('_'))
+            self.pair_2 = '\n'.join(self.pairs[1].split('_'))
+            # self.context = '\n'.join(qa['text'].split('_'))
+            self.pc_labels = qa['labels']
 
             # Wrap the context with a prompt telling the turker what to do next
-            ad['text'] = (self.context +
-                          '\n\nPlease provide a coherency rating ' +
+            ad['text'] = ('\n' + self.pair_1 +
+                          '\n\nPlease provide a rating ' +
                           'for Conversation Pair 1.')
 
             self.mturk_agent.observe(validate(ad))
-            self.question = self.mturk_agent.act()
-            # Can log the turker's question here
+            self.rating_1 = self.mturk_agent.act()
+            # Can log the turker's first rating here
 
         if self.turn_index == 1:
             # At the second turn, the Rating Collector collects the turker's
@@ -67,12 +71,13 @@ class QADataCollectionWorld(MTurkTaskWorld):
             # provide a rating for the second pair
 
             # A prompt telling the turker what to do next
-            ad['text'] = ('Thanks! Now please provide a coherency rating ' +
+            ad['text'] = ('Thanks!\n\n' + self.pair_2 +
+                          '\n\nNow, please provide a rating '
                           'for Conversation Pair 2.')
             ad['episode_done'] = True  # end of episode
 
             self.mturk_agent.observe(validate(ad))
-            self.answer = self.mturk_agent.act()
+            self.rating_2 = self.mturk_agent.act()
 
             self.episodeDone = True
 
@@ -92,6 +97,7 @@ class QADataCollectionWorld(MTurkTaskWorld):
         # creating the dataset. If data requires pickling, put it in a field
         # called 'needs-pickle'.
         return {
-            'context': self.context,
-            'acts': [self.question, self.answer],
+            'context': [self.context],
+            'pc_labels': [self.pc_labels],
+            'ratings': [self.rating_1, self.rating_2],
         }
